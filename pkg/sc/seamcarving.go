@@ -157,16 +157,16 @@ func CarvingX(img image.Image, f func(image.Image, int) [][]float64, debug bool)
 		pos = pre[i][pos]
 	}
 
-	newBounds := image.Rectangle{image.Pt(0, 0), image.Pt(dx, dy-1)}
+	newBounds := image.Rectangle{image.Pt(0, 0), image.Pt(dy-1, dx)}
 	newImg := image.NewRGBA(newBounds)
 	for i := 0; i < dx; i++ {
 		for j := 0; j < dy; j++ {
 			if j == posl[i] {
 				continue
 			} else if j < posl[i] {
-				newImg.Set(i, j, img.At(i, j))
+				newImg.Set(j, i, img.At(j, i))
 			} else {
-				newImg.Set(i, j-1, img.At(i, j))
+				newImg.Set(j-1, i, img.At(j, i))
 			}
 		}
 	}
