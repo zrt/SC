@@ -1,4 +1,4 @@
-package sc
+package SC
 
 import (
 	"image"

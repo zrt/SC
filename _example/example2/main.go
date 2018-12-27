@@ -5,10 +5,7 @@ package main
 
 import (
 	"fmt"
-	. "github.com/zrt/SeamCarvingGO/pkg/sc"
-	//"log"
-	//"net/http"
-	//_ "net/http/pprof"
+	. "github.com/zrt/SC"
 )
 
 func main() {
@@ -16,7 +13,7 @@ func main() {
 	//	log.Println(http.ListenAndServe("localhost:10000", nil))
 	//}()
 
-	img := LoadJPEG("input.jpg")
+	img := LoadPNG("input.png")
 	fmt.Printf("%v\n", img.Bounds().Size()) // show img size
 
 	energyFunc := L2NormEnergyFunc
@@ -26,7 +23,7 @@ func main() {
 	CarvingX(img, energyFunc, true)
 	CarvingY(img, energyFunc, true) // show a seam example
 
-	newImg := Resize(img, energyFunc, 300, 200)
+	newImg := Resize(img, energyFunc, 600, 600)
 
 	fmt.Printf("%v\n", newImg.Bounds().Size()) // show newImg size
 	SavePNG(newImg, "output.png")              // show newImg

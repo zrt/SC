@@ -5,7 +5,7 @@ package main
 
 import (
 	"fmt"
-	. "github.com/zrt/SeamCarvingGO/pkg/sc"
+	. "github.com/zrt/SC"
 )
 
 func main() {
@@ -20,9 +20,10 @@ func main() {
 	CarvingX(img, energyFunc, true)
 	CarvingY(img, energyFunc, true) // show a seam example
 
-	newImg := Resize(img, energyFunc, 1080, 868)
-
-	fmt.Printf("%v\n", newImg.Bounds().Size()) // show newImg size
-	SavePNG(newImg, "output.png")              // show newImg
+	for i := 0; i < 10; i++ {
+		newImg := Resize(img, energyFunc, 1280*(i+1)/10, 868)
+		fmt.Printf("%v\n", newImg.Bounds().Size())      // show newImg size
+		SavePNG(newImg, fmt.Sprintf("output%d.png", i)) // show newImg
+	}
 
 }
