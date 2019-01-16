@@ -9,11 +9,10 @@ A [Seam Carving algorithm](https://en.wikipedia.org/wiki/Seam_carving) implement
 - [ ] Uses all CPU cores in parallel
 - [x] Supports PNG, JPEG files
 - [x] Supports reduce image size
-- [ ] Supports increase image size
-- [ ] Supports region protection
-- [ ] Supports region erasure
+- [x] Supports increase image size
+- [x] Supports region protection (imgMask green)
+- [x] Supports region erasure (imgMask red)
 - [ ] Polish API
-- [ ] Using pprof to improve performance
 
 
 ## Usage
@@ -43,12 +42,9 @@ func main() {
 	// show energy img
 	SavePNG(energyImg, "img_energy.png")
 
-	// show a seam example
-	CarvingX(img, energyFunc, true)
-	CarvingY(img, energyFunc, true)
-
-	newImg := Resize(img, energyFunc, 1280/2, 868)
+	newImg, newImgSeam := Resize(img, energyFunc, 1280/2, 868, nil)
 	SavePNG(newImg, "output.png")
+	SavePNG(newImgSeam, "output_seam.png")
 }
 ```
 
