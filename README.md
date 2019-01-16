@@ -42,7 +42,7 @@ func main() {
 	// show energy img
 	SavePNG(energyImg, "img_energy.png")
 
-	newImg, newImgSeam := Resize(img, energyFunc, 1280/2, 868, nil)
+	newImg, newImgSeam := Resize(img, energyFunc, 1280*8/10, 868*8/10, nil)
 	SavePNG(newImg, "output.png")
 	SavePNG(newImgSeam, "output_seam.png")
 }
@@ -52,17 +52,25 @@ func main() {
 
 ![example](https://github.com/zrt/SC/blob/master/_example/example1/input.jpg)
 
-### output.png
-
-![example](https://github.com/zrt/SC/blob/master/_example/example1/output4.png)
-
 ### img_energy.png
 
 ![example](https://github.com/zrt/SC/blob/master/_example/example1/img_energy.png)
 
-### seam_x.png
+### output.png
 
-![example](https://github.com/zrt/SC/blob/master/_example/example1/seam_x.png)
+![example](https://github.com/zrt/SC/blob/master/_example/example1/output.png)
+
+### output_seam.png
+
+![example](https://github.com/zrt/SC/blob/master/_example/example1/output_seam.png)
+
+### increase.png
+
+![example](https://github.com/zrt/SC/blob/master/_example/example1/increase.png)
+
+### increase_seam.png
+
+![example](https://github.com/zrt/SC/blob/master/_example/example1/increase_seam.png)
 
 
 ## Links
