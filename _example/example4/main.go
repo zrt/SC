@@ -40,4 +40,5 @@ func main() {
 	fmt.Printf("%s %v\n", *outputfile, ynewImg.Bounds().Size()) // show newImg size
 	SavePNG(ynewImg, "y_"+*outputfile)                          // show newImg
 	SavePNG(ynewImg2, "y_"+*outputfile2)                        // show newImg
+
 }
