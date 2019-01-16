@@ -12,13 +12,11 @@ func main() {
 
 	img := LoadJPEG("input.jpg")
 	fmt.Printf("%v\n", img.Bounds().Size()) // show img size
+	imgMask := LoadPNG("input_mask.png")
+	fmt.Printf("%v\n", imgMask.Bounds().Size()) // show img size
 
 	energyFunc := L2NormEnergyFunc
-	energyImg := SliceToImg(energyFunc(img, 1+2))
-	SavePNG(energyImg, "img_energy.png") // show energy img
-
-	//newImg, newImg2 := Resize(img, energyFunc, 682-136, 680-136)
-	newImg, newImg2 := Resize(img, energyFunc, img.Bounds().Dx()*8/10, img.Bounds().Dy()*8/10)
+	newImg, newImg2 := Resize(img, energyFunc, img.Bounds().Dx()*8/10, img.Bounds().Dy()*8/10, imgMask)
 
 	fmt.Printf("%v\n", newImg.Bounds().Size()) // show newImg size
 	SavePNG(newImg, "output0.2.png")           // show newImg

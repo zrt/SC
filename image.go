@@ -1,6 +1,7 @@
 package SC
 
 import (
+	"golang.org/x/image/colornames"
 	"image"
 	"image/color"
 	"image/jpeg"
@@ -118,6 +119,29 @@ func flipImg(img image.Image) image.Image {
 	for i := 0; i < dx; i++ {
 		for j := 0; j < dy; j++ {
 			newImg.Set(j, i, img.At(i, j))
+		}
+	}
+	return newImg
+}
+
+func mark(img image.Image, posp *[][]int) image.Image {
+	posa := *posp
+	dx := img.Bounds().Dx()
+	dy := img.Bounds().Dy()
+	newImg := image.NewRGBA(img.Bounds())
+	for i := 0; i < dx; i++ {
+		for j := 0; j < dy; j++ {
+			newImg.Set(i, j, colornames.Red)
+		}
+	}
+	nx := len(posa)
+	ny := len(posa[0])
+
+	for i := 0; i < nx; i++ {
+		for j := 0; j < ny; j++ {
+			px := posa[i][j] / dy
+			py := posa[i][j] % dy
+			newImg.Set(px, py, img.At(px, py))
 		}
 	}
 	return newImg
