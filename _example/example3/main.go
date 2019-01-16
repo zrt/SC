@@ -21,4 +21,5 @@ func main() {
 	fmt.Printf("%v\n", newImg.Bounds().Size()) // show newImg size
 	SavePNG(newImg, "output0.2.png")           // show newImg
 	SavePNG(newImg2, "output0.2.mark.png")     // show newImg
+
 }
