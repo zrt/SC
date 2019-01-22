@@ -14,10 +14,10 @@ func setMask(energyp *[][]float64, imgMask image.Image, dx, dy int) {
 			for j := 0; j < dy; j++ {
 				r, g, b, _ := imgMask.At(i, j).RGBA()
 				if r >= 200 && g <= 20 && b <= 20 { // 红色 删去
-					energy[i][j] = -1e5
+					energy[i][j] = -1e10
 				}
 				if g >= 200 && r <= 20 && b <= 20 { // 绿色 留下
-					energy[i][j] = 1e5
+					energy[i][j] = 1e10
 				}
 			}
 		}
@@ -146,7 +146,7 @@ func carvingX(img image.Image, f func(image.Image, int) [][]float64, posp *[][]i
 	dy := bounds.Dx()
 
 	energy := f(img, 1)
-	setMask(&energy, imgMask, dx, dy)
+	setMask(&energy, imgMask, dy, dx)
 
 	dir := []int{-1, 0, 1}
 
@@ -365,6 +365,7 @@ func Resize(img image.Image, energyFunc func(image.Image, int) [][]float64, ndx,
 				retImg, retImg2 := Resize(fImg, energyFunc, ndy, ndx, fMask)
 				return flipImg(retImg), flipImg(retImg2)
 			} else {
+				println("cut two sides")
 				I := make([][]image.Image, 2)
 				I[0] = make([]image.Image, diffy)
 				I[1] = make([]image.Image, diffy)
@@ -382,8 +383,10 @@ func Resize(img image.Image, energyFunc func(image.Image, int) [][]float64, ndx,
 				T[0][0] = 0
 				bar := Pbar{}
 				bar.Init(diffx * diffy)
+				println("start", diffx, diffy)
 				for i := 0; i < diffx; i++ {
 					for j := 0; j < diffy; j++ {
+						println(i, j)
 						if i == 0 && j == 0 {
 							continue
 						}
